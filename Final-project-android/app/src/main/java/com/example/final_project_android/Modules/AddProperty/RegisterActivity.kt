@@ -1,10 +1,11 @@
-package com.example.final_project_android
+package com.example.final_project_android.Modules.AddProperty
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import com.example.final_project_android.R
 
 class RegisterActivity : AppCompatActivity() {
     var nameTextField: EditText? = null

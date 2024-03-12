@@ -1,4 +1,4 @@
-package com.example.final_project_android
+package com.example.final_project_android.Modules.Properties
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +12,7 @@ import android.widget.ListView
 import android.widget.TextView
 import com.example.final_project_android.Model.Model
 import com.example.final_project_android.Model.Property
+import com.example.final_project_android.R
 
 class PropertiesListActivity : AppCompatActivity() {
     var propertiesListView: ListView? = null
