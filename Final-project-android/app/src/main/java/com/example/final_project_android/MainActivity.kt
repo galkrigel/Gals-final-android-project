@@ -17,8 +17,8 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun onRegisterBtnClicked(view: View){
-val intent = Intent(this, RegisterActivity::class.java)
+    fun onRegisterBtnClicked(view: View) {
+        val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
     }
 
