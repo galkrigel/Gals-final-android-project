@@ -5,16 +5,28 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
-import androidx.navigation.Navigation
 
 class BlueFragment : Fragment() {
-    private var textView: TextView? = null
-    private var title: String? = null
+    var textView: TextView? = null
+    var title: String? = null
+
+    companion object {
+
+        const val TITLE = "TITLE"
+        fun newInstance(title: String)  =
+           BlueFragment().apply {
+               arguments = Bundle().apply {
+                   putString(TITLE, title)
+               }
+           }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        arguments?.let {
+            title = it.getString(TITLE)
+        }
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,15 +35,8 @@ class BlueFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_blue, container, false)
 
-        val blueTitle = arguments?.let {BlueFragmentArgs.fromBundle(it).TITLE  }
-
         textView = view.findViewById(R.id.tvBlueFragmentTitle)
-        textView?.text = blueTitle ?: "Please assign a title"
-
-        val backButton: Button = view.findViewById(R.id.btnBlueFragmentBack)
-        backButton.setOnClickListener{
-            Navigation.findNavController(view).popBackStack()
-        }
+        textView?.text = title ?: "Please assign a title"
 
         return view
     }

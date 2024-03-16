@@ -13,12 +13,12 @@
         android:theme="@style/Theme.Finalprojectandroid"
         tools:targetApi="31">
         <activity
-            android:name=".Modules.Properties.PropertyRecyclerViewActivity"
+            android:name=".Modules.Students.UserRecyclerViewActivity"
             android:exported="false" >
 
         </activity>
         <activity
-            android:name=".Modules.Properties.PropertiesListActivity"
+            android:name=".Modules.Students.UsersListActivity"
             android:exported="false">
         </activity>
         <activity
