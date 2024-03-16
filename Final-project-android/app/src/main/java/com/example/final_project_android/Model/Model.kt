@@ -8,9 +8,9 @@ class Model private constructor() {
     }
 
     init {
-        for (i in 0..20) {
-            val property = Property("property $i", "id: ${i.toString()}", "https://me.com/avatar.jpg", false)
-            properties.add(property)
-        }
+//        for (i in 0..20) {
+//            val property = Property("property $i", "id: ${i.toString()}", "https://me.com/avatar.jpg", false)
+//            properties.add(property)
+//        }
     }
 }
