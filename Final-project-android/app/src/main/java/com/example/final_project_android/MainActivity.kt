@@ -3,6 +3,7 @@ package com.example.final_project_android
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -14,6 +15,8 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.final_project_android.Modules.Properties.PropertiesFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     var navController: NavController? = null
@@ -27,7 +30,8 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment?.navController
         navController?.let { NavigationUI.setupActionBarWithNavController(this, it) }
 
-        val bottomNavigationView: BottomNavigationView = findViewById(R.id.mainActivityBottomNavigationView)
+        val bottomNavigationView: BottomNavigationView =
+            findViewById(R.id.mainActivityBottomNavigationView)
         navController?.let { NavigationUI.setupWithNavController(bottomNavigationView, it) }
     }
 
@@ -43,7 +47,9 @@ class MainActivity : AppCompatActivity() {
                 navController?.navigateUp()
                 true
             }
-            else -> navController?.let { NavigationUI.onNavDestinationSelected(item, it) } ?: super.onOptionsItemSelected(item)
+
+            else -> navController?.let { NavigationUI.onNavDestinationSelected(item, it) }
+                ?: super.onOptionsItemSelected(item)
 
         }
     }
