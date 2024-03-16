@@ -13,7 +13,7 @@ interface PropertyDao {
     fun getAll(): List<Property>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insetProperty(vararg property: Property)
+    fun insert(vararg property: Property)
 
     @Delete
     fun delete(property: Property)

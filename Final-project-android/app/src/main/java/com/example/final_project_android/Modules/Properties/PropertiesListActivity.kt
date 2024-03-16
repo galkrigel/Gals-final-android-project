@@ -16,12 +16,14 @@ import com.example.final_project_android.R
 
 class PropertiesListActivity : AppCompatActivity() {
     var propertiesListView: ListView? = null
-    var properties: MutableList<Property>? = null
+    var properties: List<Property>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_properties)
 
-        properties = Model.instance.properties
+        Model.instance.getAllProperties { properties ->
+            this.properties = properties
+        }
 
         propertiesListView = findViewById(R.id.lvPropertiesList)
         propertiesListView?.adapter = PropertiesListAdapter(properties)
@@ -31,7 +33,7 @@ class PropertiesListActivity : AppCompatActivity() {
         }
     }
 
-    class PropertiesListAdapter(val properties: MutableList<Property>?) : BaseAdapter() {
+    class PropertiesListAdapter(val properties: List<Property>?) : BaseAdapter() {
         override fun getCount(): Int = properties?.size ?: 0
 
         override fun getItem(p0: Int): Any {

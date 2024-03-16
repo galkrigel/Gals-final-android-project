@@ -7,7 +7,7 @@ import com.example.final_project_android.Model.Property
 import com.example.final_project_android.Modules.Properties.PropertyRecyclerViewActivity
 import com.example.final_project_android.R
 
- class PropertiesRecyclerAdapter(var properties: MutableList<Property>?) : RecyclerView.Adapter<PropertyViewHolder>() {
+ class PropertiesRecyclerAdapter(var properties: List<Property>?) : RecyclerView.Adapter<PropertyViewHolder>() {
 
     var listener: PropertyRecyclerViewActivity.OnItemClickListener? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PropertyViewHolder {

@@ -11,11 +11,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.navigation.Navigation
+import com.example.final_project_android.Model.Model
+import com.example.final_project_android.Model.Property
 import com.example.final_project_android.R
 
 class AddPropertyFragment : Fragment() {
     private var nameTextField: EditText? = null
-    private var emailTextField: EditText? = null
+    private var idTextField: EditText? = null
     private var messageTextView: TextView? = null
     private var saveButton: Button? = null
     private var cancelButton: Button? = null
@@ -25,6 +27,7 @@ class AddPropertyFragment : Fragment() {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,18 +40,23 @@ class AddPropertyFragment : Fragment() {
 
     private fun setupUI(view: View) {
         nameTextField = view.findViewById(R.id.etRegisterName)
-        emailTextField = view.findViewById(R.id.etRegisterEmail)
+        idTextField = view.findViewById(R.id.etRegisterEmail)
         messageTextView = view.findViewById(R.id.tvRegisterMessage)
         saveButton = view.findViewById(R.id.btnRegisterSave)
         cancelButton = view.findViewById(R.id.btnRegisterCancel)
-
+        messageTextView?.text = ""
         cancelButton?.setOnClickListener {
-           Navigation.findNavController(it).popBackStack(R.id.propertiesFragment, false)
+            Navigation.findNavController(it).popBackStack(R.id.propertiesFragment, false)
         }
 
         saveButton?.setOnClickListener {
             val name = nameTextField?.text.toString()
-            messageTextView?.text = name
+            val id = idTextField?.text.toString()
+
+            val property = Property(id, name, "", false)
+            Model.instance.addProperty(property) {
+                Navigation.findNavController(it).popBackStack(R.id.propertiesFragment, false)
+            }
         }
     }
 

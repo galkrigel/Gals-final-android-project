@@ -16,14 +16,35 @@ import com.example.final_project_android.Modules.Properties.Adapter.PropertiesRe
 import com.example.final_project_android.R
 
 class PropertyRecyclerViewActivity : AppCompatActivity() {
-    private var propertiesRecyclerView: RecyclerView? = null
-    var properties: MutableList<Property>? = null
+    var propertiesRecyclerView: RecyclerView? = null
+    var properties: List<Property>? = null
+    var adapter: PropertiesRecyclerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_property_rcycler_view)
 
+        adapter = PropertiesRecyclerAdapter(properties)
 
+        Model.instance.getAllProperties { properties ->
+            this.properties = properties
+            adapter?.properties = properties
+            adapter?.notifyDataSetChanged()
+        }
+
+        propertiesRecyclerView = findViewById(R.id.rvPropertiesRecyclerList)
+        propertiesRecyclerView?.setHasFixedSize(true)
+        propertiesRecyclerView?.layoutManager = LinearLayoutManager(this)
+
+        adapter?.listener = object : OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                Log.i("TAG", "PropertiesRecyclerAdapter: Position clicked: $position")
+            }
+
+            override fun onPropertyClicked(property: Property?) {
+                Log.i("TAG", "PROPERTY $property")
+            }
+        }
     }
 
     interface OnItemClickListener {
@@ -31,6 +52,13 @@ class PropertyRecyclerViewActivity : AppCompatActivity() {
         fun onPropertyClicked(property: Property?)
     }
 
+    override fun onResume() {
+        super.onResume()
 
-
+        Model.instance.getAllProperties { properties ->
+            this.properties = properties
+            adapter?.properties = properties
+            adapter?.notifyDataSetChanged()
+        }
+    }
 }

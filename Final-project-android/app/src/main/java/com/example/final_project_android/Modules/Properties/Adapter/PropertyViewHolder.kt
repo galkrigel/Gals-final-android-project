@@ -9,7 +9,11 @@ import com.example.final_project_android.Model.Property
 import com.example.final_project_android.Modules.Properties.PropertyRecyclerViewActivity
 import com.example.final_project_android.R
 
-class PropertyViewHolder(val itemView: View, val listener: PropertyRecyclerViewActivity.OnItemClickListener?, var properties: MutableList<Property>?) :
+class PropertyViewHolder(
+    val itemView: View,
+    val listener: PropertyRecyclerViewActivity.OnItemClickListener?,
+    var properties: List<Property>?
+) :
     RecyclerView.ViewHolder(itemView) {
     var nameTextView: TextView? = null
     var idTextView: TextView? = null

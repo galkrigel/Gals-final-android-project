@@ -1,16 +1,45 @@
 package com.example.final_project_android.Model
 
+import android.os.Looper
+import androidx.core.os.HandlerCompat
+import com.example.final_project_android.dao.AppLocalDatabase
+import com.example.final_project_android.dao.AppLocalDbRepository
+import java.util.concurrent.Executors
+
 class Model private constructor() {
-    val properties: MutableList<Property> = ArrayList()
+
+    private val database = AppLocalDatabase.db
+    private var executer = Executors.newSingleThreadExecutor()
+    private var mainHandler = HandlerCompat.createAsync(Looper.getMainLooper())
 
     companion object {
         val instance: Model = Model()
     }
 
-    init {
-//        for (i in 0..20) {
-//            val property = Property("property $i", "id: ${i.toString()}", "https://me.com/avatar.jpg", false)
-//            properties.add(property)
-//        }
+    interface GetAllPropertiesListener {
+        fun onComplete(properties: List<Property>)
     }
+
+    fun getAllProperties(callback: (List<Property>) -> Unit) {
+        executer.execute {
+
+            Thread.sleep(5000)
+
+            val properties = database.propertyDao().getAll()
+            mainHandler.post {
+                callback(properties)
+            }
+        }
+    }
+
+    fun addProperty(property: Property, callback: () -> Unit) {
+        executer.execute {
+            database.propertyDao().insert(property)
+            mainHandler.post {
+                callback()
+            }
+
+        }
+    }
+
 }
