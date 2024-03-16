@@ -15,6 +15,7 @@ import com.example.final_project_android.Model.Model
 import com.example.final_project_android.Model.Property
 import com.example.final_project_android.Modules.Properties.Adapter.PropertiesRecyclerAdapter
 import com.example.final_project_android.R
+import com.example.final_project_android.databinding.FragmentPropertiesBinding
 
 class PropertiesFragment : Fragment() {
     var propertiesRecyclerView: RecyclerView? = null
@@ -22,13 +23,16 @@ class PropertiesFragment : Fragment() {
     var adapter: PropertiesRecyclerAdapter? = null
     var progressBar: ProgressBar? = null
 
+    private var _binding: FragmentPropertiesBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_properties, container, false)
-        progressBar = view.findViewById(R.id.progressBar)
+        _binding = FragmentPropertiesBinding.inflate(inflater, container, false)
+        val view = binding.root
+        progressBar = binding.progressBar
         progressBar?.visibility = View.VISIBLE
 
         Model.instance.getAllProperties { properties ->
@@ -39,7 +43,7 @@ class PropertiesFragment : Fragment() {
             progressBar?.visibility = View.GONE
 
         }
-        propertiesRecyclerView = view.findViewById(R.id.rvPropertiesFragmentList)
+        propertiesRecyclerView = binding.rvPropertiesFragmentList
         propertiesRecyclerView?.setHasFixedSize(true)
         propertiesRecyclerView?.layoutManager = LinearLayoutManager(context)
         adapter = PropertiesRecyclerAdapter(properties)
@@ -82,6 +86,11 @@ class PropertiesFragment : Fragment() {
             progressBar?.visibility = View.GONE
 
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 

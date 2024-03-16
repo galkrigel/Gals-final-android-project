@@ -14,17 +14,18 @@ import com.example.final_project_android.Model.Model
 import com.example.final_project_android.Model.Property
 import com.example.final_project_android.Modules.Properties.Adapter.PropertiesRecyclerAdapter
 import com.example.final_project_android.R
+import com.example.final_project_android.databinding.ActivityPropertyRcyclerViewBinding
 
 class PropertyRecyclerViewActivity : AppCompatActivity() {
     var propertiesRecyclerView: RecyclerView? = null
     var properties: List<Property>? = null
     var adapter: PropertiesRecyclerAdapter? = null
 
+    private lateinit var binding: ActivityPropertyRcyclerViewBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_property_rcycler_view)
-
-        adapter = PropertiesRecyclerAdapter(properties)
+        binding = ActivityPropertyRcyclerViewBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         Model.instance.getAllProperties { properties ->
             this.properties = properties
@@ -32,7 +33,7 @@ class PropertyRecyclerViewActivity : AppCompatActivity() {
             adapter?.notifyDataSetChanged()
         }
 
-        propertiesRecyclerView = findViewById(R.id.rvPropertiesRecyclerList)
+        propertiesRecyclerView = binding.rvPropertiesRecyclerList
         propertiesRecyclerView?.setHasFixedSize(true)
         propertiesRecyclerView?.layoutManager = LinearLayoutManager(this)
 
