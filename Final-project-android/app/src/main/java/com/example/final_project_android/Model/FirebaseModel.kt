@@ -1,6 +1,7 @@
 package com.example.final_project_android.Model
 
 import android.util.Log
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.firestoreSettings
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.memoryCacheSettings
@@ -20,9 +21,12 @@ class FirebaseModel {
         db.firestoreSettings = settings
     }
 
-    fun getAllProperties(callback: (List<Property>) -> Unit) {
-        db.collection(PROPERTIES_COLLECTION_PATH).get()
-            .addOnCompleteListener {
+    fun getAllProperties(since: Long, callback: (List<Property>) -> Unit) {
+
+
+        db.collection(PROPERTIES_COLLECTION_PATH)
+            .whereGreaterThanOrEqualTo(Property.LAST_UPDATED, Timestamp(since, 0))
+            .get().addOnCompleteListener {
                 when (it.isSuccessful) {
                     true -> {
                         val properties: MutableList<Property> = mutableListOf()

@@ -21,9 +21,9 @@ class PropertiesListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_properties)
 
-        Model.instance.getAllProperties { properties ->
-            this.properties = properties
-        }
+//        Model.instance.getAllProperties { properties ->
+//            this.properties = properties
+//        }
 
         propertiesListView = findViewById(R.id.lvPropertiesList)
         propertiesListView?.adapter = PropertiesListAdapter(properties)

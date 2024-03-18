@@ -27,12 +27,6 @@ class PropertyRecyclerViewActivity : AppCompatActivity() {
         binding = ActivityPropertyRcyclerViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Model.instance.getAllProperties { properties ->
-            this.properties = properties
-            adapter?.properties = properties
-            adapter?.notifyDataSetChanged()
-        }
-
         propertiesRecyclerView = binding.rvPropertiesRecyclerList
         propertiesRecyclerView?.setHasFixedSize(true)
         propertiesRecyclerView?.layoutManager = LinearLayoutManager(this)
@@ -56,10 +50,10 @@ class PropertyRecyclerViewActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        Model.instance.getAllProperties { properties ->
-            this.properties = properties
-            adapter?.properties = properties
-            adapter?.notifyDataSetChanged()
-        }
+//        Model.instance.getAllProperties { properties ->
+//            this.properties = properties
+//            adapter?.properties = properties
+//            adapter?.notifyDataSetChanged()
+//        }
     }
 }

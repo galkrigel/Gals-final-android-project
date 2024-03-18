@@ -10,6 +10,7 @@ import com.example.final_project_android.R
  class PropertiesRecyclerAdapter(var properties: List<Property>?) : RecyclerView.Adapter<PropertyViewHolder>() {
 
     var listener: PropertyRecyclerViewActivity.OnItemClickListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PropertyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.property_layout_row, parent, false)

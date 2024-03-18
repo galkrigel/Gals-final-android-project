@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,12 +20,13 @@ import com.example.final_project_android.databinding.FragmentPropertiesBinding
 
 class PropertiesFragment : Fragment() {
     var propertiesRecyclerView: RecyclerView? = null
-    var properties: List<Property>? = null
     var adapter: PropertiesRecyclerAdapter? = null
     var progressBar: ProgressBar? = null
 
     private var _binding: FragmentPropertiesBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var viewModel: PropertiesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,25 +34,23 @@ class PropertiesFragment : Fragment() {
     ): View? {
         _binding = FragmentPropertiesBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        viewModel = ViewModelProvider(this)[PropertiesViewModel::class.java]
+
         progressBar = binding.progressBar
         progressBar?.visibility = View.VISIBLE
 
-        Model.instance.getAllProperties { properties ->
-            this.properties = properties
-            adapter?.properties = properties
-            adapter?.notifyDataSetChanged()
+        viewModel.properties = Model.instance.getAllProperties()
 
-            progressBar?.visibility = View.GONE
-
-        }
         propertiesRecyclerView = binding.rvPropertiesFragmentList
         propertiesRecyclerView?.setHasFixedSize(true)
         propertiesRecyclerView?.layoutManager = LinearLayoutManager(context)
-        adapter = PropertiesRecyclerAdapter(properties)
+        adapter = PropertiesRecyclerAdapter(viewModel.properties?.value)
+
         adapter?.listener = object : PropertyRecyclerViewActivity.OnItemClickListener {
             override fun onItemClick(position: Int) {
                 Log.i("TAG", "Position clicked $position")
-                val property = properties?.get(position)
+                val property = viewModel.properties?.value?.get(position)
                 property?.let {
                     val action =
                         PropertiesFragmentDirections.actionPropertiesFragmentToBlueFragment(it.name)
@@ -71,21 +71,34 @@ class PropertiesFragment : Fragment() {
             Navigation.createNavigateOnClickListener(PropertiesFragmentDirections.actionGlobalAddPropertyFragment())
         addPropertyButton.setOnClickListener(action)
 
+        viewModel.properties?.observe(viewLifecycleOwner) {
+            adapter?.properties = it
+            adapter?.notifyDataSetChanged()
+            progressBar?.visibility = View.GONE
+        }
+
+        binding.pullToRefresh.setOnRefreshListener {
+            reloadData()
+        }
+
+        Model.instance.propertiesListLoadingState.observe(viewLifecycleOwner) { state ->
+            binding.pullToRefresh.isRefreshing = state == Model.LoadingState.LOADING
+        }
+
         return view
     }
 
     override fun onResume() {
         super.onResume()
+        reloadData()
+    }
+
+    private fun reloadData() {
 
         progressBar?.visibility = View.VISIBLE
-        Model.instance.getAllProperties { properties ->
-            this.properties = properties
-            adapter?.properties = properties
-            adapter?.notifyDataSetChanged()
+        Model.instance.refreshAllProperties()
+        progressBar?.visibility = View.GONE
 
-            progressBar?.visibility = View.GONE
-
-        }
     }
 
     override fun onDestroy() {
