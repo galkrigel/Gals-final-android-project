@@ -20,12 +20,12 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
 
 class ApiPropertiesFragment : Fragment() {
     var apiPropertiesRecyclerView: RecyclerView? = null
     var adapter: ApiPropertiesRecyclerAdapter? = null
     var progressBar: ProgressBar? = null
-
 
     private var _binding: FragmentApiPropertiesBinding? = null
     private val binding get() = _binding!!
