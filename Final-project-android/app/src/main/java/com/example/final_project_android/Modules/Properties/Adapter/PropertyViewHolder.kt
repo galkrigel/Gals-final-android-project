@@ -27,7 +27,7 @@ class PropertyViewHolder(
     var property: Property? = null
 
     init {
-        imgImageView = itemView.findViewById(R.id.ivPropertyImage)
+        imgImageView = itemView.findViewById(R.id.ivPropertiesListRowAvatar)
         titleTextView = itemView.findViewById(R.id.tvPropertiesListRowTitle)
         //idTextView = itemView.findViewById(R.id.tvPropertiesListRowId)
         priceTextView = itemView.findViewById(R.id.tvPropertiesListRowPrice)
@@ -52,11 +52,11 @@ class PropertyViewHolder(
 
     fun bind(property: Property?) {
         this.property = property
-//        if (property?.imgUrl != "" && property?.imgUrl != null) {
-//            Picasso.get()
-//                .load(property?.imgUrl)
-//                .into(imgImageView);
-//        }
+        if (property?.imgUrl != "" && property?.imgUrl != null) {
+            Picasso.get()
+                .load(property?.imgUrl)
+                .into(imgImageView);
+        }
         titleTextView?.text = "Title: ${property?.title}"
         countryTextView?.text = "Country: ${property?.country}"
         cityTextView?.text = "City: ${property?.city}"

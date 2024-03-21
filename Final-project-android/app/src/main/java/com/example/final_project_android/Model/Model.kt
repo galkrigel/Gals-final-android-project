@@ -1,5 +1,6 @@
 package com.example.final_project_android.Model
 
+import android.net.Uri
 import android.os.Looper
 import android.util.Log
 import androidx.core.os.HandlerCompat
@@ -46,7 +47,6 @@ class Model private constructor() {
     fun refreshAllProperties() {
         propertiesListLoadingState.value = LoadingState.LOADING
 
-
         val lastUpdated: Long = Property.lastUpdated
         firebaseModel.getAllProperties(lastUpdated) { list ->
             Log.i("TAG", "Firebase returned ${list.size}, lastUpdated: $lastUpdated")
@@ -62,16 +62,12 @@ class Model private constructor() {
                 }
                 Property.lastUpdated = time
                 propertiesListLoadingState.postValue(LoadingState.LOADED)
-
-
             }
-
         }
-
     }
 
-    fun addProperty(property: Property, callback: () -> Unit) {
-        firebaseModel.addProperty(property) {
+    fun addProperty(property: Property, imageUri: Uri?, callback: () -> Unit) {
+        firebaseModel.addProperty(property,imageUri) {
             refreshAllProperties()
             callback()
         }

@@ -2,6 +2,7 @@ package com.example.final_project_android.Modules.AddProperty
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -94,8 +95,18 @@ class AddPropertyFragment : Fragment() {
 
 
             val property = Property(title, title, country, city, price, area, userID, "")
-            Model.instance.addProperty(property) {
-                Navigation.findNavController(it).popBackStack(R.id.propertiesFragment, false)
+//            Model.instance.addProperty(property) {
+//                Navigation.findNavController(it).popBackStack(R.id.propertiesFragment, false)
+//            }
+
+            if (selectedImageUri != null) {
+                Model.instance.addProperty(property, selectedImageUri!!) {
+                    Navigation.findNavController(it).popBackStack(R.id.propertiesFragment, false)
+                }
+            } else {
+                Model.instance.addProperty(property, null) {
+                    Navigation.findNavController(it).popBackStack(R.id.propertiesFragment, false)
+                }
             }
         }
     }
