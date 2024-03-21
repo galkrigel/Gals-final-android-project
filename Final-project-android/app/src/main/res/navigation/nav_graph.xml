@@ -18,9 +18,6 @@
         android:name="com.example.final_project_android.Modules.ApiProperties.ApiPropertiesFragment"
         android:label="Sold properties (from api)"
         tools:layout="@layout/fragment_api_properties">
-<!--        <action-->
-<!--            android:id="@+id/action_apiPropertiesFragment_to_blueFragment"-->
-<!--            app:destination="@id/blueFragment" />-->
     </fragment>
     <fragment
         android:id="@+id/profileFragment"

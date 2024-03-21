@@ -79,6 +79,9 @@ class ProfileFragment : Fragment() {
             Log.i("old email: ", "${emailTextField?.text}")
             Log.i("new email: ", "${editEmailTextField?.text}")
 
+            //currentUser?.updateEmail(newEmail)
+
+
 // Edit user here
 //            val property = Property(title, title, country, city, price, area, userID, "")
 //            Model.instance.addProperty(property) {

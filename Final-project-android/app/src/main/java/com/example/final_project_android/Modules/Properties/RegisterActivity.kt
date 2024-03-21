@@ -55,10 +55,18 @@ class RegisterActivity : AppCompatActivity() {
             mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(this@RegisterActivity, "User registered successfully", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@RegisterActivity,
+                            "User registered successfully",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
                     } else {
-                        Toast.makeText(this@RegisterActivity, "Registration Error: " + task.exception?.message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@RegisterActivity,
+                            "Registration Error: " + task.exception?.message,
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
         }

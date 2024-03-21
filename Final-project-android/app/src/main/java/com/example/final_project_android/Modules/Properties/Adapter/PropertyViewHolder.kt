@@ -3,12 +3,15 @@ package com.example.final_project_android.Modules.Properties.Adapter
 import android.media.Image
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.final_project_android.Model.Property
 import com.example.final_project_android.Modules.Properties.PropertyRecyclerViewActivity
 import com.example.final_project_android.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.squareup.picasso.Picasso
 
 class PropertyViewHolder(
@@ -24,7 +27,12 @@ class PropertyViewHolder(
     var priceTextView: TextView? = null
     var areaTextView: TextView? = null
     var idTextView: TextView? = null
+    var editPropertyButton: Button? = null
     var property: Property? = null
+
+    private var currentUser: FirebaseUser? = null
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var userID: String
 
     init {
         imgImageView = itemView.findViewById(R.id.ivPropertiesListRowAvatar)
@@ -34,7 +42,7 @@ class PropertyViewHolder(
         areaTextView = itemView.findViewById(R.id.tvPropertiesListRowArea)
         countryTextView = itemView.findViewById(R.id.tvPropertiesListRowCountry)
         cityTextView = itemView.findViewById(R.id.tvPropertiesListRowCity)
-
+        editPropertyButton = itemView.findViewById(R.id.btnEditProperty)
 
 //        propertyCheckbox = itemView.findViewById(R.id.cbPropertiesListRow)
 //
@@ -48,6 +56,12 @@ class PropertyViewHolder(
             listener?.onItemClick(adapterPosition)
             listener?.onPropertyClicked(property)
         }
+
+        mAuth = FirebaseAuth.getInstance()
+        currentUser = mAuth.currentUser
+        currentUser?.let {
+            userID = currentUser!!.uid
+        }
     }
 
     fun bind(property: Property?) {
@@ -56,6 +70,9 @@ class PropertyViewHolder(
             Picasso.get()
                 .load(property?.imgUrl)
                 .into(imgImageView);
+        }
+        if(property?.ownerID == currentUser?.uid){
+            editPropertyButton?.visibility=View.VISIBLE
         }
         titleTextView?.text = "Title: ${property?.title}"
         countryTextView?.text = "Country: ${property?.country}"
