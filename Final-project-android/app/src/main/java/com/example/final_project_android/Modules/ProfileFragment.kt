@@ -60,7 +60,7 @@ class ProfileFragment : Fragment() {
 
         btnLogOut.setOnClickListener {
             mAuth.signOut()
-            val intent = Intent (activity, LoginActivity::class.java)
+            val intent = Intent(activity, LoginActivity::class.java)
             activity?.startActivity(intent)
 
         }
@@ -78,7 +78,6 @@ class ProfileFragment : Fragment() {
             val newEmail = editEmailTextField?.text.toString()
             Log.i("old email: ", "${emailTextField?.text}")
             Log.i("new email: ", "${editEmailTextField?.text}")
-
 
 // Edit user here
 //            val property = Property(title, title, country, city, price, area, userID, "")

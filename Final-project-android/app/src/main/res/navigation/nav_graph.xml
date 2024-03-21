@@ -29,6 +29,12 @@
         tools:layout="@layout/fragment_profile">
     </fragment>
     <fragment
+        android:id="@+id/userProperties"
+        android:name="com.example.final_project_android.Modules.Properties.UserPropertiesFragment"
+        android:label="User properties"
+        tools:layout="@layout/fragment_properties">
+    </fragment>
+    <fragment
         android:id="@+id/blueFragment"
         android:name="com.example.final_project_android.BlueFragment"
         android:label="Blue Fragment"

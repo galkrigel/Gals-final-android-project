@@ -36,7 +36,11 @@ class Model private constructor() {
     fun getAllProperties(): LiveData<MutableList<Property>>? {
         refreshAllProperties()
         return properties ?: database.propertyDao().getAll()
+    }
 
+    fun getPropertiesByOwnerId(ownerId: String): LiveData<MutableList<Property>>? {
+        refreshAllProperties()
+        return database.propertyDao().getPropertiesByOwnerId(ownerId)
     }
 
     fun refreshAllProperties() {
