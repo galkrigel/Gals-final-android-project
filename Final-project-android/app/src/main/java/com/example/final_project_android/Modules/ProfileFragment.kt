@@ -1,5 +1,6 @@
 package com.example.final_project_android.Modules
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,8 +13,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.navigation.Navigation
+import com.example.final_project_android.MainActivity
 import com.example.final_project_android.Model.Model
 import com.example.final_project_android.Model.Property
+import com.example.final_project_android.Modules.Properties.LoginActivity
 import com.example.final_project_android.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -29,17 +32,12 @@ class ProfileFragment : Fragment() {
 
     private var currentUser: FirebaseUser? = null
     private lateinit var mAuth: FirebaseAuth
-    private lateinit var userID: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
         mAuth = FirebaseAuth.getInstance()
         currentUser = mAuth.currentUser
-//        currentUser?.let {
-//            idTextField?.text = currentUser!!.uid
-//            emailTextField?.text = currentUser!!.email
-//        }
     }
 
     override fun onCreateView(
@@ -58,6 +56,14 @@ class ProfileFragment : Fragment() {
         editEmailTextField = view.findViewById(R.id.etEditUserEmail)
         saveButton = view.findViewById(R.id.btnUserSave)
         cancelButton = view.findViewById(R.id.btnUserCancel)
+        btnLogOut = view.findViewById(R.id.btnProfileLogout)
+
+        btnLogOut.setOnClickListener {
+            mAuth.signOut()
+            val intent = Intent (activity, LoginActivity::class.java)
+            activity?.startActivity(intent)
+
+        }
 
         currentUser?.let {
             idTextField?.text = "User id: ${currentUser!!.uid}"
@@ -65,7 +71,7 @@ class ProfileFragment : Fragment() {
         }
 
         cancelButton?.setOnClickListener {
-            Navigation.findNavController(it).popBackStack(R.id.profileFragment, false)
+//            Navigation.findNavController(it).popBackStack(R.id.profileFragment, false)
         }
 
         saveButton?.setOnClickListener {

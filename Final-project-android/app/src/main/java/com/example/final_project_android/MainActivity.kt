@@ -26,12 +26,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
-    var navController: NavController? = null
+    private var navController: NavController? = null
     private lateinit var recyclerView: RecyclerView
     private lateinit var manager: RecyclerView.LayoutManager
     private lateinit var myAdapter: RecyclerView.Adapter<*>
-
-    private lateinit var btnLogOut: Button
     private lateinit var mAuth: FirebaseAuth
     val BASE_URL = "https://re.ofir.dev/"
 
@@ -50,13 +48,8 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.mainActivityBottomNavigationView)
         navController?.let { NavigationUI.setupWithNavController(bottomNavigationView, it) }
 
-        btnLogOut = findViewById(R.id.btnLogout)
         mAuth = FirebaseAuth.getInstance()
 
-        btnLogOut.setOnClickListener {
-            mAuth.signOut()
-            startActivity(Intent(this@MainActivity, LoginActivity::class.java))
-        }
         Log.i("TAG", "main has finished!")
 
     }
