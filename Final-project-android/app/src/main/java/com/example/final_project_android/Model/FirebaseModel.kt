@@ -31,8 +31,11 @@ class FirebaseModel {
                         val properties: MutableList<Property> = mutableListOf()
                         for (json in it.result) {
                             val property = Property.fromJson(json.data)
+                            print("PROPERTY: " +property + property.title);
                             properties.add(property)
                         }
+                        print("length: " +properties.size)
+                        Log.i("LENGTH", "${properties.size}")
                         callback(properties)
                     }
 

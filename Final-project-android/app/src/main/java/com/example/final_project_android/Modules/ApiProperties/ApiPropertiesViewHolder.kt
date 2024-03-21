@@ -2,13 +2,9 @@ package com.example.final_project_android.Modules.ApiProperties
 
 import android.util.Log
 import android.view.View
-import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.final_project_android.Model.ApiPropertyItem
-import com.example.final_project_android.Model.Property
-import com.example.final_project_android.Modules.ApiProperties.ApiPropertyRecyclerViewActivity
-import com.example.final_project_android.Modules.Properties.PropertyRecyclerViewActivity
 import com.example.final_project_android.R
 
 class ApiPropertyViewHolder(
@@ -22,12 +18,15 @@ class ApiPropertyViewHolder(
     var priceTextView: TextView? = null
     var countryTextView: TextView? = null
     var cityTextView: TextView? = null
-    var sizeTextView: TextView? = null
+    var areaTextView: TextView? = null
     var apiProperty: ApiPropertyItem? = null
 
     init {
-        titleTextView = itemView.findViewById(R.id.tvPropertiesListRowName)
-        idTextView = itemView.findViewById(R.id.tvPropertiesListRowId)
+        titleTextView = itemView.findViewById(R.id.tvPropertiesListRowTitle)
+        priceTextView = itemView.findViewById(R.id.tvPropertiesListRowPrice)
+        areaTextView = itemView.findViewById(R.id.tvPropertiesListRowArea)
+        countryTextView = itemView.findViewById(R.id.tvPropertiesListRowCountry)
+        cityTextView = itemView.findViewById(R.id.tvPropertiesListRowCity)
 
 
         itemView.setOnClickListener {
@@ -39,8 +38,11 @@ class ApiPropertyViewHolder(
 
     fun bind(property: ApiPropertyItem?) {
         this.apiProperty = property
-        titleTextView?.text = property?.title
-        idTextView?.text = property?._id
+        titleTextView?.text = "Title: ${property?.title}"
+        countryTextView?.text = "Country: ${property?.country}"
+        cityTextView?.text = "City: ${property?.city}"
+        priceTextView?.text = "Price: ${property?.price}$"
+        areaTextView?.text = "Area: ${property?.area} m^2"
 
     }
 }

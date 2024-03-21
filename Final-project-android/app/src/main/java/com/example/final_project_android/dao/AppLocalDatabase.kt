@@ -8,7 +8,7 @@ import com.example.final_project_android.Model.Property
 import com.example.final_project_android.base.MyApplication
 
 
-@Database(entities = [Property::class], version = 5)
+@Database(entities = [Property::class], version = 8)
 abstract class AppLocalDbRepository : RoomDatabase() {
     abstract fun propertyDao(): PropertyDao
 }

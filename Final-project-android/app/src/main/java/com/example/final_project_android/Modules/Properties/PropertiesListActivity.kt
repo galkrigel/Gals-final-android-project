@@ -10,7 +10,6 @@ import android.widget.BaseAdapter
 import android.widget.CheckBox
 import android.widget.ListView
 import android.widget.TextView
-import com.example.final_project_android.Model.Model
 import com.example.final_project_android.Model.Property
 import com.example.final_project_android.R
 
@@ -48,28 +47,38 @@ class PropertiesListActivity : AppCompatActivity() {
             if (convertView == null) {
                 view = LayoutInflater.from(parent?.context)
                     .inflate(R.layout.property_layout_row, parent, false)
-                val propertyCheckbox: CheckBox? = view?.findViewById(R.id.cbPropertiesListRow)
-                propertyCheckbox?.setOnClickListener {
-
-                    (propertyCheckbox?.tag as? Int)?.let {tag ->
-                        var property = properties?.get(tag)
-                        property?.isChecked = propertyCheckbox?.isChecked ?: false
-                    }
-                }
+//                val propertyCheckbox: CheckBox? = view?.findViewById(R.id.cbPropertiesListRow)
+//                propertyCheckbox?.setOnClickListener {
+//
+//                    (propertyCheckbox?.tag as? Int)?.let {tag ->
+//                        var property = properties?.get(tag)
+//                        property?.isChecked = propertyCheckbox?.isChecked ?: false
+//                    }
+//                }
             }
 
             view = view ?: convertView
 
-            val nameTextView: TextView? = view?.findViewById(R.id.tvPropertiesListRowName)
-            val idTextView: TextView? = view?.findViewById(R.id.tvPropertiesListRowId)
-            val propertyCheckbox: CheckBox? = view?.findViewById(R.id.cbPropertiesListRow)
+            val titleTextView: TextView? = view?.findViewById(R.id.tvPropertiesListRowTitle)
+            val countryTextView: TextView? = view?.findViewById(R.id.tvPropertiesListRowCountry)
+            val cityTextView: TextView? = view?.findViewById(R.id.tvPropertiesListRowCity)
+            val priceTextView: TextView? = view?.findViewById(R.id.tvPropertiesListRowPrice)
+            val areaTextView: TextView? = view?.findViewById(R.id.tvPropertiesListRowArea)
 
-            nameTextView?.text = property?.name
-            idTextView?.text = property?.id
-            propertyCheckbox?.apply {
-                isChecked = property?.isChecked ?: false
-                tag = position
-            }
+//            val idTextView: TextView? = view?.findViewById(R.id.tvPropertiesListRowId)
+//            val propertyCheckbox: CheckBox? = view?.findViewById(R.id.cbPropertiesListRow)
+
+            titleTextView?.text = property?.title
+            countryTextView?.text = property?.country
+            cityTextView?.text = property?.city
+            priceTextView?.text = property?.price
+            areaTextView?.text = property?.area
+
+//            idTextView?.text = property?.id
+//            propertyCheckbox?.apply {
+//                isChecked = property?.isChecked ?: false
+//                tag = position
+//            }
 
             return view!!
         }

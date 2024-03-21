@@ -14,18 +14,32 @@ import androidx.navigation.Navigation
 import com.example.final_project_android.Model.Model
 import com.example.final_project_android.Model.Property
 import com.example.final_project_android.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 class AddPropertyFragment : Fragment() {
-    private var nameTextField: EditText? = null
+    private var titleTextField: EditText? = null
     private var idTextField: EditText? = null
-    private var messageTextView: TextView? = null
+    private var priceTextField: EditText? = null
+    private var areaTextField: EditText? = null
+    private var countryTextField: EditText? = null
+    private var cityTextField: EditText? = null
+
     private var saveButton: Button? = null
     private var cancelButton: Button? = null
 
+    private var currentUser: FirebaseUser? = null
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var userID: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+        mAuth = FirebaseAuth.getInstance()
+        currentUser = mAuth.currentUser
+        currentUser?.let {
+            userID = currentUser!!.uid
+        }
     }
 
     override fun onCreateView(
@@ -39,21 +53,30 @@ class AddPropertyFragment : Fragment() {
     }
 
     private fun setupUI(view: View) {
-        nameTextField = view.findViewById(R.id.etRegisterName)
-        idTextField = view.findViewById(R.id.etRegisterEmail)
-        messageTextView = view.findViewById(R.id.tvRegisterMessage)
+        titleTextField = view.findViewById(R.id.etPropertyTitle)
+//        idTextField = view.findViewById(R.id.etPropertyCountry)
+        priceTextField = view.findViewById(R.id.etPropertyPrice)
+        areaTextField = view.findViewById(R.id.etPropertyArea)
+        countryTextField = view.findViewById(R.id.etPropertyCountry)
+        cityTextField = view.findViewById(R.id.etPropertyCity)
+
         saveButton = view.findViewById(R.id.btnRegisterSave)
         cancelButton = view.findViewById(R.id.btnRegisterCancel)
-        messageTextView?.text = ""
+
         cancelButton?.setOnClickListener {
             Navigation.findNavController(it).popBackStack(R.id.propertiesFragment, false)
         }
 
         saveButton?.setOnClickListener {
-            val name = nameTextField?.text.toString()
+            val title = titleTextField?.text.toString()
+            val country = countryTextField?.text.toString()
+            val city = cityTextField?.text.toString()
+            val area = areaTextField?.text.toString()
+            val price = priceTextField?.text.toString()
             val id = idTextField?.text.toString()
 
-            val property = Property(id, name, "", false)
+
+            val property = Property(title, title, country, city, price, area, userID, "")
             Model.instance.addProperty(property) {
                 Navigation.findNavController(it).popBackStack(R.id.propertiesFragment, false)
             }
