@@ -3,15 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/propertiesFragment">
+    app:startDestination="@id/apiPropertiesFragment">
     <fragment
         android:id="@+id/propertiesFragment"
         android:name="com.example.final_project_android.Modules.Properties.PropertiesFragment"
-        android:label="Properties List"
+        android:label="Properties For sale (from db)"
         tools:layout="@layout/fragment_properties">
         <action
             android:id="@+id/action_propertiesFragment_to_blueFragment"
             app:destination="@id/blueFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/apiPropertiesFragment"
+        android:name="com.example.final_project_android.Modules.ApiProperties.ApiPropertiesFragment"
+        android:label="Sold properties (from api)"
+        tools:layout="@layout/fragment_api_properties">
+<!--        <action-->
+<!--            android:id="@+id/action_apiPropertiesFragment_to_blueFragment"-->
+<!--            app:destination="@id/blueFragment" />-->
     </fragment>
     <fragment
         android:id="@+id/blueFragment"
@@ -21,11 +30,16 @@
         <argument
             android:name="TITLE"
             app:argType="string" />
+        <argument
+            android:name="PRICE"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/addPropertyFragment"
         android:name="com.example.final_project_android.Modules.AddProperty.AddPropertyFragment"
         android:label="Add Property"
         tools:layout="@layout/fragment_add_property" />
-    <action android:id="@+id/action_global_addPropertyFragment" app:destination="@id/addPropertyFragment" />
+    <action
+        android:id="@+id/action_global_addPropertyFragment"
+        app:destination="@id/addPropertyFragment" />
 </navigation>

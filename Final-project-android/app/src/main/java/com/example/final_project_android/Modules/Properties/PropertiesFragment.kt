@@ -52,8 +52,9 @@ class PropertiesFragment : Fragment() {
                 Log.i("TAG", "Position clicked $position")
                 val property = viewModel.properties?.value?.get(position)
                 property?.let {
+                    // TODO change to price and all the others....
                     val action =
-                        PropertiesFragmentDirections.actionPropertiesFragmentToBlueFragment(it.name)
+                        PropertiesFragmentDirections.actionPropertiesFragmentToBlueFragment(it.name, it.id)
                     Navigation.findNavController(view).navigate(action)
                 }
             }

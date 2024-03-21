@@ -10,7 +10,8 @@ import android.widget.TextView
 import androidx.navigation.Navigation
 
 class BlueFragment : Fragment() {
-    private var textView: TextView? = null
+    private var textViewTitle: TextView? = null
+    private var textViewPrice: TextView? = null
     private var title: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,9 +25,14 @@ class BlueFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_blue, container, false)
 
         val blueTitle = arguments?.let {BlueFragmentArgs.fromBundle(it).TITLE  }
+        val bluePrice = arguments?.let {BlueFragmentArgs.fromBundle(it).PRICE  }
 
-        textView = view.findViewById(R.id.tvBlueFragmentTitle)
-        textView?.text = blueTitle ?: "Please assign a title"
+
+        textViewTitle = view.findViewById(R.id.tvBlueFragmentTitle)
+        textViewTitle?.text = blueTitle ?: "Please assign a title"
+
+        textViewPrice = view.findViewById(R.id.tvBlueFragmentPrice)
+        textViewPrice?.text = bluePrice ?: "Please assign a price"
 
         val backButton: Button = view.findViewById(R.id.btnBlueFragmentBack)
         backButton.setOnClickListener{

@@ -23,7 +23,6 @@ class FirebaseModel {
 
     fun getAllProperties(since: Long, callback: (List<Property>) -> Unit) {
 
-
         db.collection(PROPERTIES_COLLECTION_PATH)
             .whereGreaterThanOrEqualTo(Property.LAST_UPDATED, Timestamp(since, 0))
             .get().addOnCompleteListener {
