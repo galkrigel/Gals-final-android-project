@@ -23,6 +23,12 @@
 <!--            app:destination="@id/blueFragment" />-->
     </fragment>
     <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.final_project_android.Modules.ProfileFragment"
+        android:label="User profile"
+        tools:layout="@layout/fragment_profile">
+    </fragment>
+    <fragment
         android:id="@+id/blueFragment"
         android:name="com.example.final_project_android.BlueFragment"
         android:label="Blue Fragment"
