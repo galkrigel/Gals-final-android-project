@@ -49,15 +49,7 @@ class PropertyViewHolder(
         areaTextView = itemView.findViewById(R.id.tvPropertiesListRowArea)
         countryTextView = itemView.findViewById(R.id.tvPropertiesListRowCountry)
         cityTextView = itemView.findViewById(R.id.tvPropertiesListRowCity)
-        editPropertyButton = itemView.findViewById(R.id.btnEditProperty)
-        deletePropertyButton = itemView.findViewById(R.id.btnDeleteProperty)
 
-//        propertyCheckbox = itemView.findViewById(R.id.cbPropertiesListRow)
-//
-//        propertyCheckbox?.setOnClickListener {
-//            var property = properties?.get(adapterPosition)
-//            property?.isChecked = propertyCheckbox?.isChecked ?: false
-//        }
 
         itemView.setOnClickListener {
             Log.i("TAG", "$adapterPosition")

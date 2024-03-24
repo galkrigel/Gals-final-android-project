@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/apiPropertiesFragment"
-        android:icon="@android:drawable/ic_lock_lock"
+        android:icon="@drawable/baseline_done_24"
         android:title="Sold" />
     <item
         android:id="@+id/propertiesFragment"
-        android:icon="@android:drawable/ic_dialog_dialer"
+        android:icon="@drawable/baseline_dynamic_feed_24"
         android:title="Feed" />
     <item
         android:id="@+id/userProperties"
-        android:icon="@android:drawable/ic_btn_speak_now"
+        android:icon="@drawable/baseline_feed_24"
         android:title="User properties" />
     <item
         android:id="@+id/profileFragment"
-        android:icon="@android:drawable/ic_dialog_info"
+        android:icon="@drawable/baseline_person_24"
         android:title="Profile" />
 
 </menu>
