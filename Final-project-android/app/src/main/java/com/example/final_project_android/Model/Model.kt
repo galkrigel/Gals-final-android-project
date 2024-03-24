@@ -83,7 +83,6 @@ class Model private constructor() {
             executer.execute {
                 database.propertyDao().delete(propertyId) // Remove from local
             }
-       //     refreshAllProperties()
             callback(isSuccess)
         }
     }

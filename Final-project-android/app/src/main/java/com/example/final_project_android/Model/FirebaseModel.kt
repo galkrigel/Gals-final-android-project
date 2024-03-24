@@ -24,7 +24,6 @@ class FirebaseModel {
         const val PROPERTIES_COLLECTION_PATH = "properties"
     }
 
-
     init {
         val settings = firestoreSettings {
             setLocalCacheSettings(memoryCacheSettings { })
@@ -35,7 +34,6 @@ class FirebaseModel {
     }
 
     fun getAllProperties(since: Long, callback: (List<Property>) -> Unit) {
-
         db.collection(PROPERTIES_COLLECTION_PATH)
             .whereGreaterThanOrEqualTo(Property.LAST_UPDATED, Timestamp(since, 0))
             .get().addOnCompleteListener {
@@ -59,7 +57,6 @@ class FirebaseModel {
             }
     }
 
-
     private fun uploadImage(
         imageUri: Uri,
         filename: String,
@@ -82,7 +79,6 @@ class FirebaseModel {
             }
     }
 
-
     fun deleteProperty(
         propertyId: String,
         callback: (Boolean) -> Unit
@@ -104,13 +100,10 @@ class FirebaseModel {
         imageUri: Uri?,
         callback: () -> Unit
     ) {
-
         if (imageUri != null) {
             val userId = auth.currentUser?.uid
             val timestamp = System.currentTimeMillis()
             uploadImage(imageUri, "images/$userId/$timestamp.jpg") { imageUrl ->
-                Log.i("image5-firebaseModel", "${imageUrl}")
-                Log.i("image6-firebaseModel", "${imageUri}")
                 if (imageUrl != null) {
                     var newProperty = Property(
                         property.id,
@@ -122,14 +115,14 @@ class FirebaseModel {
                         property.ownerID,
                         imageUrl
                     )
-                    Log.i("image7-firebaseModel", "${imageUrl}")
+                    Log.i("FirebaseModel add property1: ", "${imageUrl}")
 
                     db.collection(PROPERTIES_COLLECTION_PATH).document(newProperty.id).set(newProperty.json)
                         .addOnSuccessListener {
                             callback()
                         }
                 } else {
-                    Log.i("FirebaseModel-addProperty", "Image upload failed")
+                    Log.i("FirebaseModel add property2: ", "Image upload failed")
                     db.collection(PROPERTIES_COLLECTION_PATH).document(property.id).set(property.json)
                         .addOnSuccessListener {
                             callback()
@@ -138,31 +131,11 @@ class FirebaseModel {
             }
 
         } else {
-            Log.i("FirebaseModel-addProperty", "Add property without image")
+            Log.i("FirebaseModel add property", "Add property without an image")
             db.collection(PROPERTIES_COLLECTION_PATH).document(property.id).set(property.json)
                 .addOnSuccessListener {
                     callback()
                 }
-
         }
     }
 }
-
-
-//  val db = Firebase.firestore
-//
-//    // Create a new user with a first and last name
-//    val property = hashMapOf(
-//        "name" to "first property",
-//        "city" to "Ashdod",
-//    )
-//
-//// Add a new document with a generated ID
-//    db.collection("properties")
-//    .add(property)
-//    .addOnSuccessListener { documentReference ->
-//        Log.d("TAG", "DocumentSnapshot added with ID: ${documentReference.id}")
-//    }
-//    .addOnFailureListener { e ->
-//        Log.w("TAG", "Error adding document", e)
-//    }

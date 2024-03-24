@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.final_project_android.Model.ApiPropertyItem
-import com.example.final_project_android.Model.Model
 import com.example.final_project_android.Modules.Properties.Adapter.ApiPropertiesRecyclerAdapter
 import com.example.final_project_android.api.ApiInterface
 import com.example.final_project_android.databinding.FragmentApiPropertiesBinding
@@ -20,7 +19,6 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import android.util.Log
-import androidx.activity.result.contract.ActivityResultContracts
 
 class ApiPropertiesFragment : Fragment() {
     var apiPropertiesRecyclerView: RecyclerView? = null
@@ -49,19 +47,6 @@ class ApiPropertiesFragment : Fragment() {
         return view
     }
 
-    override fun onResume() {
-        super.onResume()
-        reloadData()
-    }
-
-    private fun reloadData() {
-
-        progressBar?.visibility = View.VISIBLE
-        Model.instance.refreshAllProperties()
-        progressBar?.visibility = View.GONE
-
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
@@ -85,8 +70,7 @@ class ApiPropertiesFragment : Fragment() {
                 response: Response<List<ApiPropertyItem>?>
             ) {
                 viewModel.apiProperties = response.body()!!
-                Log.i("API PROPERTIES:", "${response.body()!!.size}")
-
+                Log.i("Api properties size:", "${response.body()!!.size}")
 
                 apiPropertiesRecyclerView = binding.rvApiPropertiesFragmentList
                 apiPropertiesRecyclerView?.setHasFixedSize(true)
@@ -94,19 +78,7 @@ class ApiPropertiesFragment : Fragment() {
                 adapter = ApiPropertiesRecyclerAdapter(viewModel.apiProperties)
 
                 adapter?.listener = object : ApiPropertyRecyclerViewActivity.OnItemClickListener {
-                    override fun onItemClick(position: Int) {
-//                Log.i("TAG", "Position clicked $position")
-//                val property = viewModel.apiProperties?.get(position)
-//                property?.let {
-//                    // TODO change to price and all the others....
-//                    val action =
-//                        ApiPropertiesFragmentDirections.actionPropertiesFragmentToBlueFragment(
-//                            it.title,
-//                            it._id
-//                        )
-//                    Navigation.findNavController(view).navigate(action)
-//                }
-                    }
+                    override fun onItemClick(position: Int) {}
 
                     override fun onApiPropertyClicked(property: ApiPropertyItem?) {
                         Log.i("TAG", "PROPERTY $property")
@@ -115,27 +87,12 @@ class ApiPropertiesFragment : Fragment() {
 
                 apiPropertiesRecyclerView?.adapter = adapter
 
-//        val addPropertyButton: ImageButton =
-//            view.findViewById(R.id.ibtnPropertiesFragmentAddProperty)
-//        val action =
-//            Navigation.createNavigateOnClickListener(PropertiesFragmentDirections.actionGlobalAddPropertyFragment())
-//        addPropertyButton.setOnClickListener(action)
-
-//        viewModel.properties?.observe(viewLifecycleOwner) {
-//            adapter?.properties = it
-//            adapter?.notifyDataSetChanged()
                 progressBar?.visibility = View.GONE
-                //    }
-
             }
 
             override fun onFailure(call: Call<List<ApiPropertyItem>?>, t: Throwable) {
                 TODO("Not yet implemented")
             }
-
         })
-
     }
-
-
 }

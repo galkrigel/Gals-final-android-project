@@ -80,6 +80,7 @@ class AddPropertyFragment() : Fragment() {
 
         if (requireArguments().getString("propertyId") != null) {
             val id: String? = requireArguments().getString("propertyId")
+            // TODO get the property by id
             idTextField?.setText(id)
             idTextField?.isEnabled = false
         }

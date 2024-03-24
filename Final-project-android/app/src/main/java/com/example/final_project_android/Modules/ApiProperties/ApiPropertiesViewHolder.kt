@@ -32,7 +32,6 @@ class ApiPropertyViewHolder(
         countryTextView = itemView.findViewById(R.id.tvPropertiesListRowCountry)
         cityTextView = itemView.findViewById(R.id.tvPropertiesListRowCity)
 
-
         itemView.setOnClickListener {
             Log.i("TAG", "$adapterPosition")
             listener?.onItemClick(adapterPosition)
@@ -53,6 +52,5 @@ class ApiPropertyViewHolder(
         cityTextView?.text = "City: ${property?.city}"
         priceTextView?.text = "Price: ${property?.price}$"
         areaTextView?.text = "Area: ${property?.area} m^2"
-
     }
 }
