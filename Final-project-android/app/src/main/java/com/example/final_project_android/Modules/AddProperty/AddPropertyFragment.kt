@@ -3,7 +3,6 @@ package com.example.final_project_android.Modules.AddProperty
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -13,7 +12,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import com.example.final_project_android.BlueFragmentArgs
+import com.example.final_project_android.BlueFragmentArgs.Companion.fromBundle
 import com.example.final_project_android.Model.Model
 import com.example.final_project_android.Model.Property
 import com.example.final_project_android.R
@@ -21,7 +23,7 @@ import com.example.final_project_android.utils.ImagesUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
-class AddPropertyFragment : Fragment() {
+class AddPropertyFragment() : Fragment() {
     private var titleTextField: EditText? = null
     private var idTextField: EditText? = null
     private var priceTextField: EditText? = null
@@ -76,6 +78,12 @@ class AddPropertyFragment : Fragment() {
         cancelButton = view.findViewById(R.id.btnRegisterCancel)
 
 
+        if (requireArguments().getString("propertyId") != null) {
+            val id: String? = requireArguments().getString("propertyId")
+            idTextField?.setText(id)
+            idTextField?.isEnabled = false
+        }
+
         imgImageView = view.findViewById(R.id.ivPropertyImage);
         imgImageView?.setOnClickListener {
             pickImageLauncher.launch("image/*")
@@ -96,9 +104,6 @@ class AddPropertyFragment : Fragment() {
 
 
             val property = Property(id, title, country, city, price, area, userID, "")
-//            Model.instance.addProperty(property) {
-//                Navigation.findNavController(it).popBackStack(R.id.propertiesFragment, false)
-//            }
 
             if (selectedImageUri != null) {
                 Model.instance.addProperty(property, selectedImageUri!!) {

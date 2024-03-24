@@ -64,7 +64,12 @@
         android:id="@+id/addPropertyFragment"
         android:name="com.example.final_project_android.Modules.AddProperty.AddPropertyFragment"
         android:label="Add Property"
-        tools:layout="@layout/fragment_add_property" />
+        tools:layout="@layout/fragment_add_property" >
+<!--        <argument-->
+<!--            android:name="propertyId"-->
+<!--            app:argType="string?"-->
+<!--        />-->
+    </fragment>
     <action
         android:id="@+id/action_global_addPropertyFragment"
         app:destination="@id/addPropertyFragment" />

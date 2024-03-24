@@ -1,19 +1,16 @@
 package com.example.final_project_android
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.lifecycle.LiveData
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.final_project_android.Model.Model
-import com.example.final_project_android.Model.Property
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -76,7 +73,6 @@ class BlueFragment : Fragment() {
             btnEdit?.visibility = View.VISIBLE
 
             btnDelete?.setOnClickListener {
-
                 Model.instance.deleteProperty(propertyId ?: "") { isSuccess ->
                     if (isSuccess) {
                         // Going back to the properties page
@@ -97,6 +93,13 @@ class BlueFragment : Fragment() {
                     }
                 }
             }
+
+            btnEdit?.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putString("propertyId", propertyId)
+                Navigation.findNavController(it).navigate(R.id.addPropertyFragment, bundle)
+            }
+
         }
 
 
