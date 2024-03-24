@@ -16,11 +16,11 @@ interface PropertyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(vararg property: Property)
 
-    @Delete
-    fun delete(property: Property)
+    @Query("DELETE FROM Property WHERE id = :propertyId")
+    fun delete(propertyId: String)
 
-    @Query("SELECT * FROM Property WHERE id=:id")
-    fun getPropertyById(id: String): LiveData<Property>
+    @Query("SELECT * FROM Property WHERE id=:id ")
+    fun getPropertyById(id: String): Property?
 
     @Query("SELECT * FROM Property WHERE ownerID=:ownerID")
     fun getPropertiesByOwnerId(ownerID: String): LiveData<MutableList<Property>>

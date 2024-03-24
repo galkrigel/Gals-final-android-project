@@ -7,22 +7,22 @@
     tools:context=".BlueFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
+
     <TextView
-        android:id="@+id/tvBlueFragmentTitle"
+        android:id="@+id/tvPropertyScreenTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="8dp"
         android:gravity="center"
         android:text="Property title"
-        android:textColor="#F4EFEF"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <Button
         android:id="@+id/btnBlueFragmentBack"
@@ -34,35 +34,80 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvBlueFragmentPrice"
-        android:layout_width="88dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="27dp"
-        android:text="Property price"
-        android:textSize="24sp"
+    <ImageView
+        android:id="@+id/ivPropertyScreenImg"
+        android:layout_width="198dp"
+        android:layout_height="143dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/default_property_img"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvBlueFragmentTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPropertyScreenTitle" />
 
     <TextView
-        android:id="@+id/tvBluePropertyArea"
+        android:id="@+id/tvPropertyScreenCountry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:text="Country"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvBlueFragmentPrice" />
+        app:layout_constraintTop_toBottomOf="@+id/ivPropertyScreenImg" />
 
-    <Button
-        android:id="@+id/buttonBluePropertyAddComment"
+    <TextView
+        android:id="@+id/tvPropertyScreenCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="add comment"
+        android:layout_marginTop="8dp"
+        android:text="City"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPropertyScreenCountry" />
+
+    <TextView
+        android:id="@+id/tvPropertyScreenPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Price"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPropertyScreenCity" />
+
+    <TextView
+        android:id="@+id/tvPropertyScreenArea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Area"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPropertyScreenPrice" />
+
+    <Button
+        android:id="@+id/btnPropertyScreenDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnPropertyScreenEdit"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnPropertyScreenEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Edit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnPropertyScreenDelete" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

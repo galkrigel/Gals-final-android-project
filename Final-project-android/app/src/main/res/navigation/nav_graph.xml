@@ -17,30 +17,42 @@
         android:id="@+id/apiPropertiesFragment"
         android:name="com.example.final_project_android.Modules.ApiProperties.ApiPropertiesFragment"
         android:label="Sold properties (from api)"
-        tools:layout="@layout/fragment_api_properties">
-    </fragment>
+        tools:layout="@layout/fragment_api_properties"></fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.final_project_android.Modules.ProfileFragment"
         android:label="User profile"
-        tools:layout="@layout/fragment_profile">
-    </fragment>
+        tools:layout="@layout/fragment_profile"></fragment>
     <fragment
         android:id="@+id/userProperties"
         android:name="com.example.final_project_android.Modules.Properties.UserPropertiesFragment"
         android:label="User properties"
-        tools:layout="@layout/fragment_properties">
-    </fragment>
+        tools:layout="@layout/fragment_properties"></fragment>
     <fragment
         android:id="@+id/blueFragment"
         android:name="com.example.final_project_android.BlueFragment"
         android:label="Blue Fragment"
         tools:layout="@layout/fragment_blue">
         <argument
-            android:name="TITLE"
+            android:name="propertyId"
             app:argType="string" />
         <argument
-            android:name="PRICE"
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="country"
+            app:argType="string" />
+        <argument
+            android:name="city"
+            app:argType="string" />
+        <argument
+            android:name="price"
+            app:argType="string" />
+        <argument
+            android:name="area"
+            app:argType="string" />
+        <argument
+            android:name="ownerId"
             app:argType="string" />
     </fragment>
     <fragment

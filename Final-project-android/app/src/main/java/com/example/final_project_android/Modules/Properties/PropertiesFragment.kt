@@ -54,7 +54,7 @@ class PropertiesFragment : Fragment() {
                 property?.let {
                     // TODO change to price and all the others....
                     val action =
-                        PropertiesFragmentDirections.actionPropertiesFragmentToBlueFragment(it.title, it.id)
+                        PropertiesFragmentDirections.actionPropertiesFragmentToBlueFragment(it.id, it.title, it.country, it.city, it.price, it.area, it.ownerID)
                     Navigation.findNavController(view).navigate(action)
                 }
             }

@@ -1,13 +1,19 @@
 package com.example.final_project_android.Modules.Properties.Adapter
 
+import android.content.Intent
 import android.media.Image
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.final_project_android.Model.Model
 import com.example.final_project_android.Model.Property
+import com.example.final_project_android.Modules.Properties.LoginActivity
 import com.example.final_project_android.Modules.Properties.PropertyRecyclerViewActivity
 import com.example.final_project_android.R
 import com.google.firebase.auth.FirebaseAuth
@@ -28,6 +34,7 @@ class PropertyViewHolder(
     var areaTextView: TextView? = null
     var idTextView: TextView? = null
     var editPropertyButton: Button? = null
+    var deletePropertyButton: Button? = null
     var property: Property? = null
 
     private var currentUser: FirebaseUser? = null
@@ -43,6 +50,7 @@ class PropertyViewHolder(
         countryTextView = itemView.findViewById(R.id.tvPropertiesListRowCountry)
         cityTextView = itemView.findViewById(R.id.tvPropertiesListRowCity)
         editPropertyButton = itemView.findViewById(R.id.btnEditProperty)
+        deletePropertyButton = itemView.findViewById(R.id.btnDeleteProperty)
 
 //        propertyCheckbox = itemView.findViewById(R.id.cbPropertiesListRow)
 //
@@ -71,9 +79,7 @@ class PropertyViewHolder(
                 .load(property?.imgUrl)
                 .into(imgImageView);
         }
-        if(property?.ownerID == currentUser?.uid){
-            editPropertyButton?.visibility=View.VISIBLE
-        }
+
         titleTextView?.text = "Title: ${property?.title}"
         countryTextView?.text = "Country: ${property?.country}"
         cityTextView?.text = "City: ${property?.city}"

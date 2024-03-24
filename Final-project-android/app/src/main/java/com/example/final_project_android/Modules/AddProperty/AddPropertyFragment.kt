@@ -65,6 +65,7 @@ class AddPropertyFragment : Fragment() {
     }
 
     private fun setupUI(view: View) {
+        idTextField = view.findViewById(R.id.etPropertyId)
         titleTextField = view.findViewById(R.id.etPropertyTitle)
         priceTextField = view.findViewById(R.id.etPropertyPrice)
         areaTextField = view.findViewById(R.id.etPropertyArea)
@@ -94,7 +95,7 @@ class AddPropertyFragment : Fragment() {
             val id = idTextField?.text.toString()
 
 
-            val property = Property(title, title, country, city, price, area, userID, "")
+            val property = Property(id, title, country, city, price, area, userID, "")
 //            Model.instance.addProperty(property) {
 //                Navigation.findNavController(it).popBackStack(R.id.propertiesFragment, false)
 //            }

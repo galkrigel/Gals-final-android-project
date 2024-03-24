@@ -67,9 +67,24 @@ class Model private constructor() {
     }
 
     fun addProperty(property: Property, imageUri: Uri?, callback: () -> Unit) {
-        firebaseModel.addProperty(property,imageUri) {
+        firebaseModel.addProperty(property, imageUri) {
             refreshAllProperties()
             callback()
+        }
+    }
+
+
+
+    fun deleteProperty(
+        propertyId: String,
+        callback: (Boolean) -> Unit
+    ) {
+        firebaseModel.deleteProperty(propertyId) { isSuccess ->
+            executer.execute {
+                database.propertyDao().delete(propertyId) // Remove from local
+            }
+       //     refreshAllProperties()
+            callback(isSuccess)
         }
     }
 

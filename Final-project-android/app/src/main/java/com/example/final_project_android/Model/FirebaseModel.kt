@@ -83,6 +83,22 @@ class FirebaseModel {
     }
 
 
+    fun deleteProperty(
+        propertyId: String,
+        callback: (Boolean) -> Unit
+    ){
+        val postDocumentRef = db.collection(PROPERTIES_COLLECTION_PATH).document(propertyId)
+
+        postDocumentRef.delete()
+            .addOnSuccessListener {
+                Log.i("TAG", "Property with ID $propertyId deleted successfully")
+                callback(true)
+            }
+            .addOnFailureListener { exception ->
+                Log.e("TAG", "Failed to delete property with ID $propertyId, Error: $exception")
+                callback(false)
+            }
+    }
     fun addProperty(
         property: Property,
         imageUri: Uri?,
@@ -97,7 +113,7 @@ class FirebaseModel {
                 Log.i("image6-firebaseModel", "${imageUri}")
                 if (imageUrl != null) {
                     var newProperty = Property(
-                        property.title,
+                        property.id,
                         property.title,
                         property.country,
                         property.city,
@@ -108,13 +124,13 @@ class FirebaseModel {
                     )
                     Log.i("image7-firebaseModel", "${imageUrl}")
 
-                    db.collection(PROPERTIES_COLLECTION_PATH).document().set(newProperty.json)
+                    db.collection(PROPERTIES_COLLECTION_PATH).document(newProperty.id).set(newProperty.json)
                         .addOnSuccessListener {
                             callback()
                         }
                 } else {
                     Log.i("FirebaseModel-addProperty", "Image upload failed")
-                    db.collection(PROPERTIES_COLLECTION_PATH).document().set(property.json)
+                    db.collection(PROPERTIES_COLLECTION_PATH).document(property.id).set(property.json)
                         .addOnSuccessListener {
                             callback()
                         }
@@ -123,7 +139,7 @@ class FirebaseModel {
 
         } else {
             Log.i("FirebaseModel-addProperty", "Add property without image")
-            db.collection(PROPERTIES_COLLECTION_PATH).document().set(property.json)
+            db.collection(PROPERTIES_COLLECTION_PATH).document(property.id).set(property.json)
                 .addOnSuccessListener {
                     callback()
                 }
