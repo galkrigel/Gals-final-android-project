@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BlueFragment">
+    tools:context=".PropertyScreenFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -25,7 +25,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnBlueFragmentBack"
+        android:id="@+id/btnPropertyScreenFragmentBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Back"
@@ -94,6 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:text="Delete"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnPropertyScreenEdit"
         app:layout_constraintHorizontal_bias="0.5"
@@ -105,6 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:text="Edit"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

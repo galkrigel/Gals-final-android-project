@@ -14,7 +14,7 @@ import com.example.final_project_android.Model.Model
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
-class BlueFragment : Fragment() {
+class PropertyScreenFragment : Fragment() {
     private var textViewTitle: TextView? = null
     private var textViewCountry: TextView? = null
     private var textViewCity: TextView? = null
@@ -44,15 +44,15 @@ class BlueFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_blue, container, false)
+        val view = inflater.inflate(R.layout.fragment_property_screen, container, false)
 
-        val propertyId = arguments?.let { BlueFragmentArgs.fromBundle(it).propertyId }
-        val propertyTitle = arguments?.let { BlueFragmentArgs.fromBundle(it).title }
-        val propertyCountry = arguments?.let { BlueFragmentArgs.fromBundle(it).country }
-        val propertyCity = arguments?.let { BlueFragmentArgs.fromBundle(it).city }
-        val propertyPrice = arguments?.let { BlueFragmentArgs.fromBundle(it).price }
-        val propertyArea = arguments?.let { BlueFragmentArgs.fromBundle(it).area }
-        val ownerId = arguments?.let { BlueFragmentArgs.fromBundle(it).ownerId }
+        val propertyId = arguments?.let { PropertyScreenFragmentArgs.fromBundle(it).propertyId }
+        val propertyTitle = arguments?.let { PropertyScreenFragmentArgs.fromBundle(it).title }
+        val propertyCountry = arguments?.let { PropertyScreenFragmentArgs.fromBundle(it).country }
+        val propertyCity = arguments?.let { PropertyScreenFragmentArgs.fromBundle(it).city }
+        val propertyPrice = arguments?.let { PropertyScreenFragmentArgs.fromBundle(it).price }
+        val propertyArea = arguments?.let { PropertyScreenFragmentArgs.fromBundle(it).area }
+        val ownerId = arguments?.let { PropertyScreenFragmentArgs.fromBundle(it).ownerId }
 
         textViewTitle = view.findViewById(R.id.tvPropertyScreenTitle)
         textViewCountry = view.findViewById(R.id.tvPropertyScreenCountry)
@@ -103,7 +103,7 @@ class BlueFragment : Fragment() {
         }
 
 
-        val backButton: Button = view.findViewById(R.id.btnBlueFragmentBack)
+        val backButton: Button = view.findViewById(R.id.btnPropertyScreenFragmentBack)
         backButton.setOnClickListener {
             Navigation.findNavController(view).popBackStack()
         }
@@ -112,24 +112,3 @@ class BlueFragment : Fragment() {
     }
 
 }
-
-
-//companion object {
-//    /**
-//     * Use this factory method to create a new instance of
-//     * this fragment using the provided parameters.
-//     *
-//     * @param param1 Parameter 1.
-//     * @param param2 Parameter 2.
-//     * @return A new instance of fragment BlueFragment.
-//     */
-//    // TODO: Rename and change types and number of parameters
-//    @JvmStatic
-//    fun newInstance(param1: String, param2: String) =
-//        BlueFragment().apply {
-//            arguments = Bundle().apply {
-//                putString(ARG_PARAM1, param1)
-//                putString(ARG_PARAM2, param2)
-//            }
-//        }
-//}

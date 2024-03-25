@@ -14,8 +14,8 @@ import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.example.final_project_android.BlueFragmentArgs
-import com.example.final_project_android.BlueFragmentArgs.Companion.fromBundle
+import com.example.final_project_android.PropertyScreenFragmentArgs
+import com.example.final_project_android.PropertyScreenFragmentArgs.Companion.fromBundle
 import com.example.final_project_android.Model.Model
 import com.example.final_project_android.Model.Property
 import com.example.final_project_android.R

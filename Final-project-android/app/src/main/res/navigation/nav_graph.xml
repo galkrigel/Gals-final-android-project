@@ -10,8 +10,8 @@
         android:label="Properties For sale (from db)"
         tools:layout="@layout/fragment_properties">
         <action
-            android:id="@+id/action_propertiesFragment_to_blueFragment"
-            app:destination="@id/blueFragment" />
+            android:id="@+id/action_propertiesFragment_to_propertyScreenFragment"
+            app:destination="@id/fragment_property_screen" />
     </fragment>
     <fragment
         android:id="@+id/apiPropertiesFragment"
@@ -30,14 +30,14 @@
         android:label="User properties"
         tools:layout="@layout/fragment_properties">
         <action
-            android:id="@+id/action_propertiesFragment_to_blueFragment"
-            app:destination="@id/blueFragment" />
+            android:id="@+id/action_propertiesFragment_to_propertyScreenFragment"
+            app:destination="@id/fragment_property_screen" />
     </fragment>
     <fragment
-        android:id="@+id/blueFragment"
-        android:name="com.example.final_project_android.BlueFragment"
-        android:label="Blue Fragment"
-        tools:layout="@layout/fragment_blue">
+        android:id="@+id/fragment_property_screen"
+        android:name="com.example.final_project_android.PropertyScreenFragment"
+        android:label="Property screen Fragment"
+        tools:layout="@layout/fragment_property_screen">
         <argument
             android:name="propertyId"
             app:argType="string" />
