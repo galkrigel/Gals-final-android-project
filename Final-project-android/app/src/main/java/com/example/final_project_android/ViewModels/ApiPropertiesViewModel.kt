@@ -1,4 +1,4 @@
-package com.example.final_project_android.Modules.ApiProperties
+package com.example.final_project_android.ViewModels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

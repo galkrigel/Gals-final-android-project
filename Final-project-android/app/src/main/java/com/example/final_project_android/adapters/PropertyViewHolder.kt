@@ -1,20 +1,12 @@
-package com.example.final_project_android.Modules.Properties.Adapter
+package com.example.final_project_android.adapters
 
-import android.content.Intent
-import android.media.Image
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.final_project_android.Model.Model
 import com.example.final_project_android.Model.Property
-import com.example.final_project_android.Modules.Properties.LoginActivity
-import com.example.final_project_android.Modules.Properties.PropertyRecyclerViewActivity
 import com.example.final_project_android.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser

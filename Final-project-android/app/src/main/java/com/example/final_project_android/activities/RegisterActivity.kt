@@ -1,4 +1,4 @@
-package com.example.final_project_android.Modules.Properties
+package com.example.final_project_android.activities
 
 import android.content.Intent
 import android.os.Bundle

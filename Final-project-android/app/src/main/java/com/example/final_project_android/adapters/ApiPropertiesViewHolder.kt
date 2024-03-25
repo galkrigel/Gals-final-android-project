@@ -1,4 +1,4 @@
-package com.example.final_project_android.Modules.ApiProperties
+package com.example.final_project_android.adapters
 
 import android.util.Log
 import android.view.View

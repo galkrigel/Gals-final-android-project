@@ -1,8 +1,7 @@
-package com.example.final_project_android.Modules.AddProperty
+package com.example.final_project_android.fragments
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -14,8 +13,6 @@ import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.example.final_project_android.PropertyScreenFragmentArgs
-import com.example.final_project_android.PropertyScreenFragmentArgs.Companion.fromBundle
 import com.example.final_project_android.Model.Model
 import com.example.final_project_android.Model.Property
 import com.example.final_project_android.R
@@ -92,7 +89,7 @@ class AddPropertyFragment() : Fragment() {
 
 
         cancelButton?.setOnClickListener {
-            Navigation.findNavController(it).popBackStack(R.id.propertiesFragment, false)
+            Navigation.findNavController(it).popBackStack()
         }
 
         saveButton?.setOnClickListener {
@@ -108,11 +105,11 @@ class AddPropertyFragment() : Fragment() {
 
             if (selectedImageUri != null) {
                 Model.instance.addProperty(property, selectedImageUri!!) {
-                    Navigation.findNavController(it).popBackStack(R.id.propertiesFragment, false)
+                    Navigation.findNavController(it).popBackStack()
                 }
             } else {
                 Model.instance.addProperty(property, null) {
-                    Navigation.findNavController(it).popBackStack(R.id.propertiesFragment, false)
+                    Navigation.findNavController(it).popBackStack()
                 }
             }
         }

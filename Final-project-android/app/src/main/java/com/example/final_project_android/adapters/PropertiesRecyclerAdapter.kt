@@ -1,10 +1,9 @@
-package com.example.final_project_android.Modules.Properties.Adapter
+package com.example.final_project_android.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.final_project_android.Model.Property
-import com.example.final_project_android.Modules.Properties.PropertyRecyclerViewActivity
 import com.example.final_project_android.R
 
  class PropertiesRecyclerAdapter(var properties: List<Property>?) : RecyclerView.Adapter<PropertyViewHolder>() {

@@ -6,7 +6,7 @@
     app:startDestination="@id/apiPropertiesFragment">
     <fragment
         android:id="@+id/propertiesFragment"
-        android:name="com.example.final_project_android.Modules.Properties.PropertiesFragment"
+        android:name="com.example.final_project_android.fragments.PropertiesFragment"
         android:label="Properties For sale (from db)"
         tools:layout="@layout/fragment_properties">
         <action
@@ -15,18 +15,18 @@
     </fragment>
     <fragment
         android:id="@+id/apiPropertiesFragment"
-        android:name="com.example.final_project_android.Modules.ApiProperties.ApiPropertiesFragment"
+        android:name="com.example.final_project_android.fragments.ApiPropertiesFragment"
         android:label="Sold properties (from api)"
         tools:layout="@layout/fragment_api_properties"></fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.final_project_android.Modules.ProfileFragment"
+        android:name="com.example.final_project_android.fragments.ProfileFragment"
         android:label="User profile"
         tools:layout="@layout/fragment_profile">
     </fragment>
     <fragment
         android:id="@+id/userProperties"
-        android:name="com.example.final_project_android.Modules.Properties.UserPropertiesFragment"
+        android:name="com.example.final_project_android.fragments.UserPropertiesFragment"
         android:label="User properties"
         tools:layout="@layout/fragment_properties">
         <action
@@ -35,7 +35,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragment_property_screen"
-        android:name="com.example.final_project_android.PropertyScreenFragment"
+        android:name="com.example.final_project_android.fragments.PropertyScreenFragment"
         android:label="Property screen Fragment"
         tools:layout="@layout/fragment_property_screen">
         <argument
@@ -62,7 +62,7 @@
     </fragment>
     <fragment
         android:id="@+id/addPropertyFragment"
-        android:name="com.example.final_project_android.Modules.AddProperty.AddPropertyFragment"
+        android:name="com.example.final_project_android.fragments.AddPropertyFragment"
         android:label="Add Property"
         tools:layout="@layout/fragment_add_property" >
 <!--        <argument-->

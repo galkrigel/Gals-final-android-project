@@ -1,23 +1,13 @@
-package com.example.final_project_android.Modules.ApiProperties
+package com.example.final_project_android.adapters
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.final_project_android.Model.ApiPropertyItem
-import com.example.final_project_android.Model.Model
 import com.example.final_project_android.Model.Property
-import com.example.final_project_android.Modules.Properties.Adapter.ApiPropertiesRecyclerAdapter
-import com.example.final_project_android.Modules.Properties.Adapter.PropertiesRecyclerAdapter
-import com.example.final_project_android.R
 import com.example.final_project_android.databinding.ActivityApiPropertyRecyclerViewBinding
-import com.example.final_project_android.databinding.ActivityPropertyRcyclerViewBinding
 
 class ApiPropertyRecyclerViewActivity : AppCompatActivity() {
     var apiPropertiesRecyclerView: RecyclerView? = null

@@ -1,4 +1,4 @@
-package com.example.final_project_android.Modules.Properties
+package com.example.final_project_android.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -14,14 +14,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.final_project_android.Model.Model
 import com.example.final_project_android.Model.Property
-import com.example.final_project_android.Modules.Properties.Adapter.PropertiesRecyclerAdapter
+import com.example.final_project_android.adapters.PropertiesRecyclerAdapter
+import com.example.final_project_android.ViewModels.PropertiesViewModel
+import com.example.final_project_android.adapters.PropertyRecyclerViewActivity
 import com.example.final_project_android.R
 import com.example.final_project_android.databinding.FragmentPropertiesBinding
+import com.google.firebase.auth.FirebaseAuth
 
-class PropertiesFragment : Fragment() {
+class UserPropertiesFragment : Fragment() {
     var propertiesRecyclerView: RecyclerView? = null
     var adapter: PropertiesRecyclerAdapter? = null
     var progressBar: ProgressBar? = null
+    private lateinit var mAuth: FirebaseAuth
+
 
     private var _binding: FragmentPropertiesBinding? = null
     private val binding get() = _binding!!
@@ -39,8 +44,10 @@ class PropertiesFragment : Fragment() {
 
         progressBar = binding.progressBar
         progressBar?.visibility = View.VISIBLE
+        mAuth = FirebaseAuth.getInstance()
+        val user = mAuth.currentUser
 
-        viewModel.properties = Model.instance.getAllProperties()
+        viewModel.properties = Model.instance.getPropertiesByOwnerId(user!!.uid)
 
         propertiesRecyclerView = binding.rvPropertiesFragmentList
         propertiesRecyclerView?.setHasFixedSize(true)
@@ -54,7 +61,15 @@ class PropertiesFragment : Fragment() {
                 property?.let {
                     // TODO change to price and all the others....
                     val action =
-                        PropertiesFragmentDirections.actionPropertiesFragmentToPropertyScreenFragment(it.id, it.title, it.country, it.city, it.price, it.area, it.ownerID)
+                        PropertiesFragmentDirections.actionPropertiesFragmentToPropertyScreenFragment(
+                            it.id,
+                            it.title,
+                            it.country,
+                            it.city,
+                            it.price,
+                            it.area,
+                            it.ownerID
+                        )
                     Navigation.findNavController(view).navigate(action)
                 }
             }

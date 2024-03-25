@@ -1,13 +1,9 @@
-package com.example.final_project_android.Modules.Properties.Adapter
+package com.example.final_project_android.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.final_project_android.Model.ApiPropertyItem
-import com.example.final_project_android.Model.Property
-import com.example.final_project_android.Modules.ApiProperties.ApiPropertyRecyclerViewActivity
-import com.example.final_project_android.Modules.ApiProperties.ApiPropertyViewHolder
-import com.example.final_project_android.Modules.Properties.PropertyRecyclerViewActivity
 import com.example.final_project_android.R
 
 class ApiPropertiesRecyclerAdapter(var apiProperties: List<ApiPropertyItem>?) : RecyclerView.Adapter<ApiPropertyViewHolder>() {

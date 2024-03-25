@@ -5,25 +5,13 @@ import androidx.navigation.fragment.NavHostFragment
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.RecyclerView
-import com.example.final_project_android.Model.ApiPropertyItem
-import com.example.final_project_android.Modules.Properties.LoginActivity
-import com.example.final_project_android.R
-import com.example.final_project_android.api.ApiInterface
+import com.example.final_project_android.activities.LoginActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.flow.callbackFlow
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
     private var navController: NavController? = null

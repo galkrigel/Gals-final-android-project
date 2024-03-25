@@ -1,4 +1,4 @@
-package com.example.final_project_android.Modules
+package com.example.final_project_android.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,11 +12,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import androidx.navigation.Navigation
-import com.example.final_project_android.MainActivity
-import com.example.final_project_android.Model.Model
-import com.example.final_project_android.Model.Property
-import com.example.final_project_android.Modules.Properties.LoginActivity
+import com.example.final_project_android.activities.LoginActivity
 import com.example.final_project_android.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
