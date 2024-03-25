@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
@@ -17,6 +18,7 @@ import com.example.final_project_android.Model.Model
 import com.example.final_project_android.Model.Property
 import com.example.final_project_android.R
 import com.example.final_project_android.utils.ImagesUtils
+import com.example.final_project_android.utils.Validations
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -100,16 +102,29 @@ class AddPropertyFragment() : Fragment() {
             val price = priceTextField?.text.toString()
             val id = idTextField?.text.toString()
 
-
-            val property = Property(id, title, country, city, price, area, userID, "")
-
-            if (selectedImageUri != null) {
-                Model.instance.addProperty(property, selectedImageUri!!) {
-                    Navigation.findNavController(it).popBackStack()
-                }
+            if (Validations.isFieldEmpty(title)
+                || Validations.isFieldEmpty(country)
+                || Validations.isFieldEmpty(city)
+                || Validations.isFieldEmpty(area)
+                || Validations.isFieldEmpty(price)
+                || Validations.isFieldEmpty(id)
+            ) {
+                Toast.makeText(
+                    context,
+                    "Please complete all the details.",
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
-                Model.instance.addProperty(property, null) {
-                    Navigation.findNavController(it).popBackStack()
+                val property = Property(id, title, country, city, price, area, userID, "")
+
+                if (selectedImageUri != null) {
+                    Model.instance.addProperty(property, selectedImageUri!!) {
+                        Navigation.findNavController(it).popBackStack()
+                    }
+                } else {
+                    Model.instance.addProperty(property, null) {
+                        Navigation.findNavController(it).popBackStack()
+                    }
                 }
             }
         }
