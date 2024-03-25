@@ -15,9 +15,4 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(vararg user: User)
 
-    @Query("DELETE FROM User WHERE email = :email")
-    fun delete(email: String)
-
-    @Query("SELECT * FROM User WHERE email=:email ")
-    fun getUserByEmail(email: String): User?
 }

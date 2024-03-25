@@ -7,7 +7,7 @@
     tools:context=".fragments.AddPropertyFragment">
 
     <ImageView
-        android:id="@+id/ivUserProfilePicture"
+        android:id="@+id/ivEditUserImg"
         android:layout_width="212dp"
         android:layout_height="197dp"
         android:layout_marginTop="8dp"
@@ -22,18 +22,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="User id:"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivUserProfilePicture" />
+        app:layout_constraintTop_toBottomOf="@+id/ivEditUserImg" />
 
     <TextView
         android:id="@+id/tvUserEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="Email:"
         android:textSize="24dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,15 +45,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="52dp"
-        android:text="Edit email:"
+        android:layout_marginTop="16dp"
+        android:text="Edit name:"
         android:textSize="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvUserEmail" />
 
 
     <EditText
-        android:id="@+id/etEditUserEmail"
+        android:id="@+id/etEditUserName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"

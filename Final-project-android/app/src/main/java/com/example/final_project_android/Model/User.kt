@@ -1,11 +1,7 @@
 package com.example.final_project_android.Model
 
-import android.content.Context
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.final_project_android.base.MyApplication
-import com.google.firebase.Timestamp
-import com.google.firebase.firestore.FieldValue
 
 @Entity
 class User(
@@ -28,7 +24,23 @@ class User(
             val user = User(email, name, imgUrl)
             return user
         }
+
+        fun getUpdateMapWithImage(user: User): MutableMap<String, Any> {
+            val updates = mutableMapOf<String, Any>()
+            updates[NAME_KEY] = user.name
+            updates[IMG_URL_KEY] = user.imgUrl
+            return updates
+        }
+
+        fun getUpdateMap(user: User): MutableMap<String, Any> {
+            val updates = mutableMapOf<String, Any>()
+            updates[NAME_KEY] = user.name
+            return updates
+        }
     }
+
+
+
 
     val json: Map<String, Any>
         get() {

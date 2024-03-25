@@ -185,4 +185,71 @@ class FirebaseModel {
     }
 
 
+    fun editUserDetails(
+        user: User,
+        newImgUri: Uri?,
+        callback: (Boolean) -> Unit
+    ) {
+
+        if (newImgUri != null) {
+            val timestamp = System.currentTimeMillis()
+            uploadImage(
+                newImgUri,
+                "images/${user.email}/profile/profile_$timestamp.jpg"
+            ) { imageUrl ->
+                if (imageUrl != null) {
+                    user.imgUrl = imageUrl
+                    editUserDetailsInDB(user, true) { isSuccess ->
+                        callback(isSuccess)
+                    }
+                } else {
+                    callback(false)
+                }
+            }
+        } else {
+            editUserDetailsInDB(user, false) { isSuccess ->
+                callback(isSuccess)
+            }
+        }
+    }
+
+    private fun editUserDetailsInDB(
+        user: User,
+        isProfileImageUpdated: Boolean,
+        callback: (Boolean) -> Unit
+    ) {
+        db.collection(USERS_COLLECTION_PATH)
+            .whereEqualTo(User.EMAIL_KEY, user.email)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                if (!querySnapshot.isEmpty) {
+                    val userDocument = querySnapshot.documents[0]
+                    val updates =
+                        if (isProfileImageUpdated) User.getUpdateMapWithImage(user) else User.getUpdateMap(
+                            user
+                        )
+
+                    userDocument.reference
+                        .update(updates)
+                        .addOnSuccessListener {
+                            Log.i(
+                                "Update User:", "successful : ${user.email}"
+                            )
+                            callback(true)
+                        }
+                        .addOnFailureListener { e ->
+                            Log.e("Update User:", "failed: ${user.email}", e)
+                            callback(false)
+                        }
+                } else {
+                    Log.i("Update User:", "failed2: ${user.email}")
+                    callback(false)
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.e("Update User:", "failed3: ${user.email}", e)
+                callback(false)
+            }
+    }
+
 }

@@ -79,7 +79,15 @@ class Model private constructor() {
         }
     }
 
-
+    fun editUserDetails(
+        user: User,
+        newProfileImageUri: Uri?,
+        callback: (Boolean) -> Unit
+    ) {
+        firebaseModel.editUserDetails(user, newProfileImageUri) { isSuccess ->
+            callback(isSuccess)
+        }
+    }
 
     fun deleteProperty(
         propertyId: String,
