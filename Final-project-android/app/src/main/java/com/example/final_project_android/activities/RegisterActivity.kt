@@ -9,7 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import android.widget.Toast
+import androidx.navigation.Navigation
 import com.example.final_project_android.MainActivity
+import com.example.final_project_android.Model.Model
+import com.example.final_project_android.Model.User
 import com.example.final_project_android.R
 
 class RegisterActivity : AppCompatActivity() {
@@ -55,11 +58,19 @@ class RegisterActivity : AppCompatActivity() {
             mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(
-                            this@RegisterActivity,
-                            "User registered successfully",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        var user = User(email)
+                        Model.instance.addUser(user = user, imageUri = null) {
+                            Toast.makeText(
+                                this@RegisterActivity,
+                                "User registered successfully",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+//                        Toast.makeText(
+//                            this@RegisterActivity,
+//                            "User registered successfully",
+//                            Toast.LENGTH_SHORT
+//                        ).show()
                         startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
                     } else {
                         Toast.makeText(

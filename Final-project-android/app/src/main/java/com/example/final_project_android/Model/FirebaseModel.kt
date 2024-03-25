@@ -22,6 +22,8 @@ class FirebaseModel {
 
     companion object {
         const val PROPERTIES_COLLECTION_PATH = "properties"
+        const val USERS_COLLECTION_PATH = "users"
+
     }
 
     init {
@@ -82,7 +84,7 @@ class FirebaseModel {
     fun deleteProperty(
         propertyId: String,
         callback: (Boolean) -> Unit
-    ){
+    ) {
         val postDocumentRef = db.collection(PROPERTIES_COLLECTION_PATH).document(propertyId)
 
         postDocumentRef.delete()
@@ -95,6 +97,7 @@ class FirebaseModel {
                 callback(false)
             }
     }
+
     fun addProperty(
         property: Property,
         imageUri: Uri?,
@@ -117,13 +120,15 @@ class FirebaseModel {
                     )
                     Log.i("FirebaseModel add property1: ", "${imageUrl}")
 
-                    db.collection(PROPERTIES_COLLECTION_PATH).document(newProperty.id).set(newProperty.json)
+                    db.collection(PROPERTIES_COLLECTION_PATH).document(newProperty.id)
+                        .set(newProperty.json)
                         .addOnSuccessListener {
                             callback()
                         }
                 } else {
                     Log.i("FirebaseModel add property2: ", "Image upload failed")
-                    db.collection(PROPERTIES_COLLECTION_PATH).document(property.id).set(property.json)
+                    db.collection(PROPERTIES_COLLECTION_PATH).document(property.id)
+                        .set(property.json)
                         .addOnSuccessListener {
                             callback()
                         }
@@ -138,4 +143,46 @@ class FirebaseModel {
                 }
         }
     }
+
+
+    fun addUser(
+        user: User,
+        imageUri: Uri?,
+        callback: () -> Unit
+    ) {
+        if (imageUri != null) {
+            val userId = auth.currentUser?.uid
+            val timestamp = System.currentTimeMillis()
+            uploadImage(imageUri, "images/$userId/$timestamp.jpg") { imageUrl ->
+                if (imageUrl != null) {
+                    var newUser = User(
+                        user.email,
+                        user.name,
+                        imageUrl
+                    )
+                    Log.i("FirebaseModel add user1: ", "${imageUrl}")
+
+                    db.collection(USERS_COLLECTION_PATH).document(user.email).set(newUser.json)
+                        .addOnSuccessListener {
+                            callback()
+                        }
+                } else {
+                    Log.i("FirebaseModel add user2: ", "Image upload failed")
+                    db.collection(USERS_COLLECTION_PATH).document(user.email).set(user.json)
+                        .addOnSuccessListener {
+                            callback()
+                        }
+                }
+            }
+
+        } else {
+            Log.i("FirebaseModel add user", "Add user without an image")
+            db.collection(USERS_COLLECTION_PATH).document(user.email).set(user.json)
+                .addOnSuccessListener {
+                    callback()
+                }
+        }
+    }
+
+
 }

@@ -73,6 +73,12 @@ class Model private constructor() {
         }
     }
 
+    fun addUser(user: User, imageUri: Uri?, callback: () -> Unit) {
+        firebaseModel.addUser(user, imageUri) {
+            callback()
+        }
+    }
+
 
 
     fun deleteProperty(
